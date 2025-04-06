@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "net.tarsa.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "ExampleMixin",
+    "PlayerManaMixin",
+    "PlayerSpellMixin",
+    "PlayerStatsMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+	}
+}

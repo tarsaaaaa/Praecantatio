@@ -1,0 +1,40 @@
+{
+	"schemaVersion": 1,
+	"id": "praecantatio",
+	"version": "${version}",
+	"name": "Praecantatio",
+	"description": "Magical!",
+	"authors": [
+		"Tarsaaaaa!"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/praecantatio/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"net.tarsa.Praecantatio"
+		],
+		"client" : [
+			"net.tarsa.PraecantatioClient"
+		],
+		"fabric-datagen": [
+			"net.tarsa.PraecantatioDataGenerator"
+		]
+	},
+	"mixins": [
+		"praecantatio.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.16.10",
+		"minecraft": "~1.20.4",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}

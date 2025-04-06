@@ -13,13 +13,20 @@ import net.tarsa.spell.elemental.fire.BallOfFire;
 public class PraecantatioEntities {
     public static final EntityType<BallOfFireEntity> BALL_OF_FIRE = Registry.register(
             Registries.ENTITY_TYPE,
-            new Identifier(Praecantatio.MOD_ID, "ball-of-fire"),
-            FabricEntityTypeBuilder.<BallOfFireEntity>create(SpawnGroup.MISC, BallOfFireEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F))
-                    .trackRangeBlocks(8)
-                    .trackedUpdateRate(10)
+            Identifier.of(Praecantatio.MOD_ID, "ball-of-fire"),
+            EntityType.Builder.<BallOfFireEntity>create(BallOfFireEntity::new, SpawnGroup.MISC)
+                    .setDimensions(0.25F, 0.25F)
                     .build()
     );
+
+    public static final EntityType<NukeEntity> NUKE_ENTITY_TYPE = Registry.register(
+            Registries.ENTITY_TYPE,
+            Identifier.of(Praecantatio.MOD_ID, "nuke-entity"),
+            EntityType.Builder.<NukeEntity>create(NukeEntity::new, SpawnGroup.MISC)
+                    .setDimensions(0.25F, 0.25F)
+                    .build()
+    );
+
 
     public static void registerEntities() {
     }

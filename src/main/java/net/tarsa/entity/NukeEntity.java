@@ -10,42 +10,36 @@ import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
+import net.minecraft.world.explosion.Explosion;
 
-public class BallOfFireEntity extends ThrownItemEntity {
-    public BallOfFireEntity(EntityType<? extends ThrownItemEntity> entityType, World world) {
+public class NukeEntity extends ThrownItemEntity {
+    public NukeEntity(EntityType<? extends ThrownItemEntity> entityType, World world) {
         super(entityType, world);
     }
 
-    public BallOfFireEntity(World world, LivingEntity owner) {
-        super(PraecantatioEntities.BALL_OF_FIRE, owner, world);
+    public NukeEntity(World world, LivingEntity owner) {
+        super(PraecantatioEntities.NUKE_ENTITY_TYPE, owner, world);
     }
 
-    @Override
-    protected Item getDefaultItem() {
-        return Items.FIRE_CHARGE;
-    }
 
     @Override
     protected void onCollision(HitResult hitResult) {
         if (!this.getWorld().isClient && hitResult instanceof BlockHitResult blockHit) {
             BlockPos hitPos = blockHit.getBlockPos();
             if (blockHit.getSide() == Direction.UP) {
-                igniteGround(hitPos);
+                boom(hitPos);
                 this.discard();
             }
         }
     }
 
-    private void igniteGround(BlockPos hitPos) {
+    private void boom(BlockPos hitPos) {
         World world = this.getWorld();
+        world.createExplosion(this.getOwner(), hitPos.getX(), hitPos.getY(), hitPos.getZ(), 100f, World.ExplosionSourceType.TNT);
+    }
 
-        for (int x = -2; x <= 2; x++) {
-            for (int z = -2; z <= 2; z++) {
-                BlockPos firePos = hitPos.add(x, 1, z);
-                if (world.getBlockState(firePos).isAir()) {
-                    world.setBlockState(firePos, net.minecraft.block.Blocks.FIRE.getDefaultState());
-                }
-            }
-        }
+    @Override
+    protected Item getDefaultItem() {
+        return Items.FIRE_CHARGE;
     }
 }

@@ -8,6 +8,7 @@ import net.minecraft.world.World;
 import net.tarsa.interfaces.PlayerManaInterface;
 import net.tarsa.spell.elemental.air.ShieldOfAir;
 import net.tarsa.spell.elemental.fire.BallOfFire;
+import net.tarsa.spell.elemental.fire.Nuke;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,7 +26,7 @@ public class SpellManager {
             tickCooldowns();
         });
 
-        equipSpell(0, new ShieldOfAir());
+        equipSpell(0, new Nuke());
     }
 
     public void equipSpell(int slot, Spell spell) {
